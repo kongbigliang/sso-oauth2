@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongbig.dao.OAuthUserDao">
+
+	<resultMap type="com.kongbig.model.OAuthUser" id="oAuthUserResultMap">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="sex" property="sex" />
+		<result column="phone" property="phone" />
+		<result column="status" property="status" />
+		<result column="remark" property="remark" />
+		<result column="creator" property="creator" />
+		<result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+		<result column="last_update" property="lastUpdate" />
+		<result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+	</resultMap>
+
+	<select id="getUserModel" parameterType="string" resultMap="oAuthUserResultMap">
+		SELECT 
+			* 
+		FROM 
+			t_oauth2_user 
+		WHERE 
+			username=#{0} AND password=#{1} AND status='001'
+	</select>
+	
+	<select id="getOAuthUserByName" parameterType="string" resultMap="oAuthUserResultMap">
+		SELECT 
+			 * 
+		FROM 
+			t_oauth2_user 
+		WHERE 
+			username=#{username}
+	</select>
+	
+	<select id="getOAuthUserById" parameterType="string" resultMap="oAuthUserResultMap">
+		SELECT 
+			 * 
+		FROM 
+			t_oauth2_user 
+		WHERE 
+			id=#{id}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="addOAuthUser" parameterType="com.kongbig.model.OAuthUser">
+		INSERT INTO 
+			t_oauth2_user 
+		VALUES(
+			#{id},
+			#{username},
+			#{password},
+			#{sex},
+			#{phone},
+			#{status},
+			#{remark},
+			#{creator},
+			SYSDATE(),
+			#{lastUpdate},
+			SYSDATE()
+		)
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="updateOAuthUser" parameterType="com.kongbig.model.OAuthUser">
+		UPDATE 
+			t_oauth2_user 
+		SET 
+			sex=#{sex},
+			phone=#{phone},
+			status=#{status},
+			remark=#{remark},
+			last_update=#{lastUpdate},
+			last_update_time=SYSDATE()
+		WHERE
+			id=#{id}
+	</update>
+	
+	<!-- 
+		删除和批量删除 
+		array:表示参数是数组类型
+	-->
+	<delete id="deleteOAuthUser" parameterType="string">
+		DELETE FROM 
+			T_OAUTH2_USER 
+		WHERE 
+			id 
+		IN 
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+	</delete>
+
+</mapper>

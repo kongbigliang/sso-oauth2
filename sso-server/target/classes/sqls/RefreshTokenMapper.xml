@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongbig.dao.RefreshTokenDao">
+
+	<resultMap type="com.kongbig.model.RefreshTokenModel" id="refreshTokenResultMap">
+		<id column="refresh_token" property="refreshToken" />
+		<result column="create_time" property="createTime" />
+		<result column="expires_in" property="expiresIn" />
+	</resultMap>
+	
+	<insert id="addRefreshToken" parameterType="com.kongbig.model.RefreshTokenModel">
+		INSERT INTO
+			T_REFRESH_TOKEN 
+		VALUES(
+			#{refreshToken},
+			#{createTime},
+			#{expiresIn}
+		)
+	</insert>
+	
+	<select id="getRefreshTokenByPK" parameterType="string" resultMap="refreshTokenResultMap">
+		SELECT 
+			* 
+		FROM 
+			T_REFRESH_TOKEN RT 
+		WHERE 
+			RT.REFRESH_TOKEN=#{refreshToken}
+	</select>
+	
+	<update id="updateRefreshToken" parameterType="com.kongbig.model.RefreshTokenModel">
+		UPDATE  
+			t_refresh_token rt 
+		SET
+			rt.create_time=SYSDATE()
+		WHERE 
+			rt.refresh_token=#{refreshToken}
+	</update>
+	
+	<!-- 查出所有refreshToken -->
+	<select id="getAllrefreshToken" resultMap="refreshTokenResultMap">
+		SELECT 
+			* 
+		FROM 
+			T_REFRESH_TOKEN C
+	</select>
+	
+	<!-- 根据refreshToken删除refreshToken -->
+	<delete id="deleteRefreshToken" parameterType="string">
+		DELETE	FROM 
+			T_REFRESH_TOKEN
+		WHERE 
+			refresh_token=#{refreshToken}
+	</delete>
+
+</mapper>

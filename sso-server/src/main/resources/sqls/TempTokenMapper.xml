@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongbig.dao.TempTokenDao">
+
+	<resultMap type="com.kongbig.model.TempTokenModel" id="tempTokenResultMap">
+		<id column="temp_token" property="tempToken" />
+		<result column="client_id" property="clientID" />
+		<result column="re_uri_ip" property="redirectURIIP" />
+		<result column="return_uri" property="returnURI" />
+	</resultMap>
+	
+	<insert id="addTempToken" parameterType="com.kongbig.model.TempTokenModel">
+		INSERT INTO
+			T_TEMP_TOKEN 
+		VALUES(
+			#{tempToken},
+			#{clientID},
+			#{redirectURIIP},
+			#{returnURI}
+		)
+	</insert>
+	
+	<select id="getTempTokenByPK" parameterType="string" resultMap="tempTokenResultMap">
+		SELECT 
+			* 
+		FROM 
+			T_TEMP_TOKEN TT 
+		WHERE 
+			TT.TEMP_TOKEN=#{0}
+	</select>
+
+</mapper>

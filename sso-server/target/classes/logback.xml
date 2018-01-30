@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<!-- scanPeriod:扫描的频率 -->
+<configuration scan="true" scanPeriod="1 seconds">
+	<!-- 声明日志存放在本地的位置 -->
+	<property name="LOG_HOME" value="E:/dev/workspace/log" />
+	<!-- 当前服务的名称(本地可见) -->
+	<property name="CONTEXT_NAME" value="/sso-server" />
+	<!-- 控制台输出日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- 每一行日志的级别; thread:指定线程号 -->
+			<pattern>%-5level %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread]
+				%logger{100}[line:%L] - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
+	<appender name="ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<OnMismatch>DENY</OnMismatch>
+			<OnMatch>ACCEPT</OnMatch>
+		</filter>
+		<File>${LOG_HOME}/${CONTEXT_NAME}/error.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/${CONTEXT_NAME}/error.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+		<maxHistory>90</maxHistory> <!-- keep 90 days -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level
+				%logger{100}[line:%L] - %msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<!-- appender理解为记录器 -->
+	<appender name="DEBUG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<OnMismatch>DENY</OnMismatch>
+			<OnMatch>ACCEPT</OnMatch>
+		</filter>
+		<File>${LOG_HOME}/${CONTEXT_NAME}/debug.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 备份 -->
+			<FileNamePattern>${LOG_HOME}/${CONTEXT_NAME}/debug.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+		<maxHistory>90</maxHistory> <!-- keep 90 days -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level
+				%logger{100}[line:%L] - %msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<!-- DEBUG,INFO,WARN,ERROR -->
+	<logger name="com.kongbig" level="DEBUG" />
+	<logger name="org.apache" level="DEBUG" />
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="ch.qos.logback" level="DEBUG" />
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="DEBUG" />
+	</root>
+</configuration>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongbig.dao.ClientDao">
+
+	<resultMap type="com.kongbig.model.Client" id="clientResultMap">
+		<id column="client_id" property="clientID" />
+		<result column="client_name" property="clientName" />
+		<result column="client_secret" property="clientSecret" />
+		<result column="ip" property="ip" />
+		<result column="domain_name" property="domainName" />
+		<result column="status" property="status" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createdTime" />
+		<result column="last_update" property="lastUpdate" />
+		<result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+	</resultMap>
+
+	<select id="getClientById" parameterType="string" resultMap="clientResultMap">
+		SELECT 
+			 * 
+		FROM 
+			T_CLIENT_INFO C
+		WHERE 
+			C.CLIENT_ID=#{clientID} AND C.STATUS='001'
+	</select>
+	
+	<select id="getClientByName" parameterType="string" resultMap="clientResultMap">
+		SELECT 
+			*
+		FROM 
+			T_CLIENT_INFO C
+		WHERE 
+			C.CLIENT_NAME=#{clientName}
+	</select>
+	
+	<select id="getClientModel" parameterType="string" resultMap="clientResultMap">
+		SELECT 
+			*
+		FROM 
+			T_CLIENT_INFO C
+		WHERE 
+			C.CLIENT_ID=#{0} AND C.CLIENT_SECRET=#{1} AND C.STATUS='001'
+	</select>
+
+	<!-- 更新状态 -->
+	<update id="updateStatus" parameterType="string">
+		UPDATE 
+			t_client_info
+		SET 
+			status=#{1}
+		WHERE 
+			client_id=#{0}
+	</update>
+
+	<!-- 删除和批量删除 array:表示参数是数组类型 -->
+	<delete id="deleteClient" parameterType="string">
+		DELETE FROM 
+			t_client_info 
+		WHERE 
+			client_id
+		IN 
+		<foreach collection="array" item="clientID" open="(" separator="," close=")">
+			#{clientID}
+		</foreach>
+	</delete>
+	
+	<insert id="addClient" parameterType="com.kongbig.model.Client">
+		INSERT INTO 
+			t_client_info 
+		VALUES(
+			#{clientID},
+			#{clientName},
+			#{clientSecret},
+			#{ip},
+			#{domainName},
+			#{status},
+			SYSDATE(),
+			#{lastUpdate},
+			SYSDATE()
+		)
+	</insert>
+
+</mapper>

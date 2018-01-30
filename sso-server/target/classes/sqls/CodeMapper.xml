@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongbig.dao.CodeDao">
+
+	<resultMap type="com.kongbig.model.Code" id="codeResultMap">
+		<id column="code" property="code" />
+		<result column="create_time" property="createTime" />
+		<result column="expires_in" property="expiresIn" />
+		<result column="account_fk" property="accountFk" />
+	</resultMap>
+
+	<!-- 新增 -->
+	<insert id="addCode" parameterType="com.kongbig.model.Code">
+		INSERT INTO 
+			T_CODE 
+		VALUES(
+			#{code},
+			#{createTime},
+			#{expiresIn},
+			#{accountFk}
+		)
+	</insert>
+	
+	<!-- 按codeid查询 -->
+	<select id="getCodeByCId" parameterType="string" resultMap="codeResultMap">
+		SELECT 
+			* 
+		FROM 
+			T_CODE C
+		WHERE 
+			C.CODE=#{code}
+	</select>
+	
+	<!-- 查出所有code -->
+	<select id="getAllCode" resultMap="codeResultMap">
+		SELECT 
+			* 
+		FROM 
+			T_CODE C
+	</select>
+	
+	<!-- 根据code删除code -->
+	<delete id="deleteCode" parameterType="string">
+		DELETE	FROM 
+			T_CODE
+		WHERE 
+			CODE=#{CODE}
+	</delete>
+	
+</mapper>

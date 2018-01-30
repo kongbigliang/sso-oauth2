@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongbig.dao.AccessTokenDao">
+
+	<resultMap type="com.kongbig.model.AccessTokenModel" id="accessTokenResultMap">
+		<id column="access_token" property="accessToken" />
+		<result column="create_time" property="createTime" />
+		<result column="expires_in" property="expiresIn" />
+		<result column="refresh_token_fk" property="refreshToken" />
+		<result column="account_fk" property="account" />
+	</resultMap>
+	
+	<insert id="addAccessToken" parameterType="com.kongbig.model.AccessTokenModel">
+		INSERT INTO
+			t_access_token 
+		VALUES(
+			#{accessToken},
+			#{createTime},
+			#{expiresIn},
+			#{refreshToken},
+			#{account}
+		)
+	</insert>
+	
+	<select id="getAccessTokenByPK" parameterType="string" resultMap="accessTokenResultMap">
+		SELECT 
+			* 
+		FROM 
+			T_ACCESS_TOKEN AT 
+		WHERE 
+			AT.ACCESS_TOKEN=#{0}
+	</select>
+	
+	<select id="getAccessTokenByFK" parameterType="string" resultMap="accessTokenResultMap">
+		SELECT 
+			* 
+		FROM 
+			T_ACCESS_TOKEN AT 
+		WHERE 
+			AT.REFRESH_TOKEN_FK=#{0}
+	</select>
+	
+	<update id="updateAccessToken" parameterType="com.kongbig.model.AccessTokenModel">
+		UPDATE 
+			t_access_token at
+		set 
+			at.create_time=SYSDATE()
+		WHERE 
+			at.access_token=#{accessToken}
+	</update>
+
+	<!-- 根据refreshToken删除accessToken -->
+	<delete id="deleteTokenByRtoken" parameterType="string">
+		DELETE	FROM 
+			T_ACCESS_TOKEN
+		WHERE 
+			refresh_token_fk=#{refreshToken}
+	</delete>
+
+</mapper>
