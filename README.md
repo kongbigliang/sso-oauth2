@@ -34,6 +34,8 @@ OAuth2.0授权码模式
 |4|`SSO_CLIENT_PORT`|SSO客户端应用所占用的端口（与所在第三方应用一致）|
 |5|`CLIENT$ID`|SSO服务器应用所占用的端口|
 |6|`CLIENT$SECRET`|SSO服务器应用所占用的端口|
+|7|`SSO_CLIENT_URI`|重定向地址，即redirectURI（SSO服务器重定向回SSO客户端所在的第三方系统）|
+|7|`returnURI`|目标地址returnURI（用户要访问的资源）|
 
 
 ### 协议流程
