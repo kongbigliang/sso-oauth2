@@ -15,9 +15,9 @@ The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
     * [申请接入](#申请接入)
     * [审核并同意接入](#审核并同意接入)
     * [SSO客户端使用](#SSO客户端使用)
-    * [第三方工程使用](#第三方工程使用)
+    * [第三方工程使用](#第三方工程使用)
     * [实现登录的servlet](#实现登录的servlet)
-    * [实现退出的servlet](#实现退出的servlet)
+    * [实现退出的servlet](#实现退出的servlet)
 * [测试](#测试)
 
 OAuth2.0授权码模式
@@ -80,10 +80,10 @@ OAuth2.0授权码模式
 ![](/img/审核并同意接入pic.png "审核并同意接入界面")
 
 ### 第三方工程使用
-   步骤：
-      1.将sso-client打成jar包，并导入到第三方系统中
-      2.编写servlet继承并重写OAuthServlet中的回调方法
-      3.配置filter和servlet
+#### 步骤：  
+   * 将sso-client打成jar包，并导入到第三方系统中
+   * 编写servlet继承并重写OAuthServlet中的回调方法
+   * 配置filter和servlet
 #### 实现登录的servlet
 ![](/img/login-code.png "登录代码")
 
