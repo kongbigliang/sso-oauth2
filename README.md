@@ -16,8 +16,8 @@ The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
     * [审核并同意接入](#审核并同意接入)
     * [SSO客户端使用](#SSO客户端使用)
     * [第三方工程使用](#第三方工程使用)
-      * [实现登录的servlet](#实现登录的servlet)
-      * [实现退出的servlet](#实现退出的servlet)
+    * [实现登录的servlet](#实现登录的servlet)
+    * [实现退出的servlet](#实现退出的servlet)
 * [测试](#测试)
 
 OAuth2.0授权码模式
@@ -85,33 +85,10 @@ OAuth2.0授权码模式
       2.编写servlet继承并重写OAuthServlet中的回调方法
       3.配置filter和servlet
 #### 实现登录的servlet
-public class ClientOauthServlet extends `OAuthServlet` {<br>
-   @Override<br>
-   public void loginSuccess(HttpServletRequest request, HttpServletResponse response,<br>
-         AccessTokenModel accessTokenModel) {<br>
-      `User user = new User("username", "password");<br>
-      request.getSession().setAttribute("user", user);`<br>
-      System.out.println("SSO登陆验证成功后的操作...");<br>
-   }<br>
-<br>
-   @Override<br>
-   public void loginError(HttpServletRequest request, HttpServletResponse response) {<br>
-      System.out.println("SSO登陆验证失败后的操作...");<br>
-   }<br>
-}<br>
-#### 实现退出的servlet
-public class ClientLogoutServlet extends LogoutServlet {
-   @Override
-   public void logoutError(HttpServletRequest request, HttpServletResponse response) {
-      `request.getSession().setAttribute("user", null);`
-      System.out.println("退出失败后的操作...");
-   }
+![](/img/login-code.png "登录代码")
 
-   @Override
-   public void logoutSuccess(HttpServletRequest request, HttpServletResponse response) {
-      System.out.println("退出成功后的操作...");
-   }
-}
+#### 实现退出的servlet
+![](/img/logout-code.png "退出代码")
 
 测试
 -----
