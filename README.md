@@ -16,6 +16,10 @@ The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
 OAuth2.0授权码模式
 -----
 ### 参数解释
+|序号|参数名|参数解释|
+|---|----|-----|
+|1|SSO_SERVER_IP|SSO服务器应用所部署服务器的ip地址|
+|2|SSO_SERVER_PORT|SSO服务器应用所占用的端口|
 
 ### 协议流程
 
