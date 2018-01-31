@@ -58,6 +58,7 @@ OAuth2.0授权码模式
 -----
 ### 申请接入
 |描述|向SSO服务器申请接入第三方应用|
+|----|-----|
 |URL|http://IP地址:端口号/sso-server/common/client/switch-on-sso.jsp|
 |示例|http://127.0.0.1:8080/sso-server/common/client/switch-on-sso.jsp|
 |URL|客户端ID|
