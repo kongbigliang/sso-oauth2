@@ -39,7 +39,7 @@ OAuth2.0授权码模式
 
 
 ### 协议流程
-![](sso-oauth2-flow.png "协议流程")
+![](/img/sso-oauth2-flow.png "协议流程")
 
 
 系统实现
