@@ -15,6 +15,9 @@ The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
     * [申请接入](#申请接入)
     * [审核并同意接入](#审核并同意接入)
     * [SSO客户端使用](#SSO客户端使用)
+    * [第三方工程使用](#第三方工程使用)
+      * [实现登录的servlet](#实现登录的servlet)
+      * [实现退出的servlet](#实现退出的servlet)
 * [测试](#测试)
 
 OAuth2.0授权码模式
@@ -62,10 +65,51 @@ OAuth2.0授权码模式
 |URL|http://IP地址:端口号/sso-server/common/client/switch-on-sso.jsp|
 |示例|http://127.0.0.1:8080/sso-server/common/client/switch-on-sso.jsp|
 |URL|客户端ID|
-
+   界面如下：
 ![](/img/第三方接入申请pic.png "第三方接入申请界面")
 
 ### 审核并同意接入
+|描述|SSO服务器管理人员审核并同意第三方系统接入|
+|----|-----|
+|URL|http://IP地址:端口号/sso-server/common/login.jsp|
+|示例|http:// 127.0.0.1:8080/sso-server/common/login.jsp|
+|参数|username=admin password=admin|
+   界面如下：
+![](/img/审核并同意接入pic.png "审核并同意接入界面")
+
+### 第三方工程使用
+   步骤：
+      1.将sso-client打成jar包，并导入到第三方系统中
+      2.编写servlet继承并重写OAuthServlet中的回调方法
+      3.配置filter和servlet
+#### 实现登录的servlet
+   public class ClientOauthServlet extends `OAuthServlet` {
+      @Override
+      public void loginSuccess(HttpServletRequest request, HttpServletResponse response,
+            AccessTokenModel accessTokenModel) {
+         `User user = new User("username", "password");
+         request.getSession().setAttribute("user", user);`
+         System.out.println("SSO登陆验证成功后的操作...");
+      }
+
+      @Override
+      public void loginError(HttpServletRequest request, HttpServletResponse response) {
+         System.out.println("SSO登陆验证失败后的操作...");
+      }
+   }
+#### 实现退出的servlet
+   public class ClientLogoutServlet extends LogoutServlet {
+      @Override
+      public void logoutError(HttpServletRequest request, HttpServletResponse response) {
+         `request.getSession().setAttribute("user", null);`
+         System.out.println("退出失败后的操作...");
+      }
+
+      @Override
+      public void logoutSuccess(HttpServletRequest request, HttpServletResponse response) {
+         System.out.println("退出成功后的操作...");
+      }
+   }
 
 测试
 -----
