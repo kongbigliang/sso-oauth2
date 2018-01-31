@@ -39,9 +39,7 @@ OAuth2.0授权码模式
 
 
 ### 协议流程
-| 图片 | 描述 |
-| ---- | ---- |
-|![baidu][baidu-logo] | 百度|
+`[![](/sso-oauth2-flow.png "协议流程")][sso-oauth2-flow]`
 
 
 系统实现
