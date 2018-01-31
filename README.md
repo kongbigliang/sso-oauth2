@@ -4,7 +4,6 @@ sso-oauth2
 The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
 
 ## 目录
-* [开发者信息](#开发者信息)
 * [OAuth2.0授权码模式](#OAuth2.0授权码模式)
    * [参数解释](#参数解释)
    * [协议流程](#协议流程)
@@ -13,9 +12,6 @@ The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
    * [SSO客户端](#SSO客户端)
 * [第三方系统接入单点登陆服务](#第三方系统接入单点登陆服务)
 * [测试](#测试)
-
-开发者信息
------
 
 OAuth2.0授权码模式
 -----
