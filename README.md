@@ -13,8 +13,8 @@ The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
     * [SSO客户端](#SSO客户端)
 * [第三方系统接入和使用单点登陆服务](#第三方系统接入和使用单点登陆服务)
     * [申请接入](#申请接入)
-    * [审核并同意接入](#审核并同意接入)
-    * [SSO客户端使用](#SSO客户端使用)
+    * [审核并同意接入](#审核并同意接入)
+    * [SSO客户端使用](#SSO客户端使用)
 * [测试](#测试)
 
 OAuth2.0授权码模式
@@ -57,6 +57,11 @@ OAuth2.0授权码模式
 第三方系统接入和使用单点登陆服务
 -----
 ### 申请接入
+|描述|向SSO服务器申请接入第三方应用|
+|URL|http://IP地址:端口号/sso-server/common/client/switch-on-sso.jsp|
+|示例|http://127.0.0.1:8080/sso-server/common/client/switch-on-sso.jsp|
+|URL|客户端ID|
+![](/img/第三方接入申请界面.png "第三方接入申请界面")
 
 ### 审核并同意接入
 
