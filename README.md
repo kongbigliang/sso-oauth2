@@ -92,4 +92,13 @@ OAuth2.0授权码模式
 测试
 -----
 #### 项目部署
-![](/img/logout-code.png "退出代码")
+![](/img/running-project.png "部署项目并启动")
+
+#### 第一次登录商城系统时，还没登陆，则AS提供登陆页面
+![](/img/toLogin.png "AS提供登陆页面")
+
+#### 登陆成功后到达商城
+![](/img/loginToShop.png "商城页面")
+
+#### 因为是单点登陆系统，所以访问交易系统不需要登陆
+![](/img/loginToTrade.png "商城页面")
