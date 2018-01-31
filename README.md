@@ -45,12 +45,15 @@ OAuth2.0授权码模式
 系统实现
 -----
 ### SSO服务器
+   Spring+SpringMVC+Mybatis、MySQL数据库
+   第三方系统接入界面为基于Bootstrap的Hui前端框架
 
 ### SSO客户端
-
+   Servlet、HttpClient
 
 第三方系统接入单点登陆服务
 -----
+
 
 测试
 -----
