@@ -66,7 +66,7 @@ OAuth2.0授权码模式
 |示例|http://127.0.0.1:8080/sso-server/common/client/switch-on-sso.jsp|
 |URL|客户端ID|
 
-   界面如下：
+界面如下：<br>
 ![](/img/第三方接入申请pic.png "第三方接入申请界面")
 
 ### 审核并同意接入
@@ -76,7 +76,7 @@ OAuth2.0授权码模式
 |示例|http:// 127.0.0.1:8080/sso-server/common/login.jsp|
 |参数|username=admin password=admin|
 
-   界面如下：
+界面如下：<br>
 ![](/img/审核并同意接入pic.png "审核并同意接入界面")
 
 ### 第三方工程使用
@@ -85,20 +85,20 @@ OAuth2.0授权码模式
       2.编写servlet继承并重写OAuthServlet中的回调方法
       3.配置filter和servlet
 #### 实现登录的servlet
-public class ClientOauthServlet extends `OAuthServlet` {
-   @Override
-   public void loginSuccess(HttpServletRequest request, HttpServletResponse response,
-         AccessTokenModel accessTokenModel) {
-      `User user = new User("username", "password");
-      request.getSession().setAttribute("user", user);`
-      System.out.println("SSO登陆验证成功后的操作...");
-   }
-
-   @Override
-   public void loginError(HttpServletRequest request, HttpServletResponse response) {
-      System.out.println("SSO登陆验证失败后的操作...");
-   }
-}
+public class ClientOauthServlet extends `OAuthServlet` {<br>
+   @Override<br>
+   public void loginSuccess(HttpServletRequest request, HttpServletResponse response,<br>
+         AccessTokenModel accessTokenModel) {<br>
+      `User user = new User("username", "password");<br>
+      request.getSession().setAttribute("user", user);`<br>
+      System.out.println("SSO登陆验证成功后的操作...");<br>
+   }<br>
+<br>
+   @Override<br>
+   public void loginError(HttpServletRequest request, HttpServletResponse response) {<br>
+      System.out.println("SSO登陆验证失败后的操作...");<br>
+   }<br>
+}<br>
 #### 实现退出的servlet
 public class ClientLogoutServlet extends LogoutServlet {
    @Override
