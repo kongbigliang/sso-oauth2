@@ -14,7 +14,6 @@ The system of `Single sign-on` based on `OAuth2.0` and `SSM`.
 * [第三方系统接入和使用单点登陆服务](#第三方系统接入和使用单点登陆服务)
     * [申请接入](#申请接入)
     * [审核并同意接入](#审核并同意接入)
-    * [SSO客户端使用](#SSO客户端使用)
     * [第三方工程使用](#第三方工程使用)
     * [实现登录的servlet](#实现登录的servlet)
     * [实现退出的servlet](#实现退出的servlet)
@@ -51,8 +50,8 @@ OAuth2.0授权码模式
 系统实现
 -----
 ### SSO服务器
-   Spring+SpringMVC+Mybatis、MySQL数据库
-   第三方系统接入界面为基于Bootstrap的Hui前端框架
+   * Spring+SpringMVC+Mybatis、MySQL数据库
+   * 第三方系统接入界面为基于Bootstrap的Hui前端框架
 
 ### SSO客户端
    Servlet、HttpClient
